@@ -6,6 +6,8 @@ import {
   MdOutlineFeedback,
 } from "react-icons/md";
 import { FiUsers, FiImage } from "react-icons/fi";
+import { useState } from "react";
+
 import AdminBooking from "../admin/Bookings/adminBooking";
 import AdminCategories from "../admin/categories/adminCategories";
 import AdminRooms from "../admin/rooms/rooms";
@@ -14,67 +16,158 @@ import AdminFeedback from "../admin/feedback/feedback";
 import AdminGalleryItems from "../admin/galleryItems/galleryItems";
 
 export default function AdminPage() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="w-full max-h-[100vh] flex">
-      <div className="w-[20%] bg-blue-400 h-[100vh] flex flex-col ">
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/bookings" className="flex items-center gap-2">
-            <CiBookmarkCheck />
-            Bookings
-          </Link>
+    <div className="flex flex-col h-screen">
+      {/* Header */}
+      <header className="flex items-center justify-between bg-[#101827] text-[#FEA116] px-4 py-3 shadow-md">
+        {/* Sidebar Toggle for Mobile */}
+        <button
+          onClick={toggleSidebar}
+          className="block lg:hidden text-white text-2xl"
+        >
+          ☰
+        </button>
+
+        {/* Hotel Name */}
+        <div className="text-2xl font-bold lg:text-4xl">LuxeStay</div>
+
+        {/* User Profile */}
+        <div className="relative">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="User Profile"
+            className="w-10 h-10 rounded-full cursor-pointer"
+            onClick={toggleDropdown}
+          />
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg text-gray-800 z-50">
+              <ul className="py-1">
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                    onClick={() => alert("Profile Clicked")}
+                  >
+                    Profile
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                    onClick={() => alert("Logout Clicked")}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
+      </header>
 
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/categories" className="flex items-center gap-2">
-            <MdOutlineCategory />
-            Categories
-          </Link>
-        </div>
-
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/rooms" className="flex items-center gap-2">
-            <MdOutlineRoom />
-            Rooms
-          </Link>
-        </div>
-
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/users" className="flex items-center gap-2">
-            <FiUsers />
-            Users
-          </Link>
-        </div>
-
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/feedback" className="flex items-center gap-2">
-            <MdOutlineFeedback />
-            Feedback
-          </Link>
-        </div>
-
-        <div className="text-white text-[30px] hover:font-bold flex justify-start items-center px-4">
-          <Link to="/admin/gallery-items" className="flex items-center gap-2">
-            <FiImage />
-            Gallery Items
-          </Link>
-        </div>
-      </div>
-
-      <div className="w-[80%] max-h-[100vh] overflow-y-scroll   bg-blue-900">
-
-        <Routes path="/*">
-          <Route path="/bookings" element={<AdminBooking
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <div
+          className={`fixed lg:relative top-0 bg-[#101827] h-screen w-64 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            } lg:translate-x-0 transition-transform duration-300 z-40 lg:h-full`}
+        >
+          <div className="text-white text-2xl font-bold p-4"></div>
+          <nav className="flex flex-col space-y-4 px-4">
+            <SidebarLink
+              to="/admin/bookings"
+              icon={<CiBookmarkCheck />}
+              label="Bookings"
             />
-          } />
-          <Route path="/categories" element={<AdminCategories/>} />
-          <Route path="/rooms" element={<AdminRooms/>} />
-          <Route path="/users" element={<AdminUsers/>} />
-          <Route path="/feedback" element={<AdminFeedback/>} />
-          <Route path="/gallery-items" element={<AdminGalleryItems/>
-          } />
+            <SidebarLink
+              to="/admin/categories"
+              icon={<MdOutlineCategory />}
+              label="Categories"
+            />
+            <SidebarLink
+              to="/admin/rooms"
+              icon={<MdOutlineRoom />}
+              label="Rooms"
+            />
+            <SidebarLink
+              to="/admin/users"
+              icon={<FiUsers />}
+              label="Users"
+            />
+            <SidebarLink
+              to="/admin/feedback"
+              icon={<MdOutlineFeedback />}
+              label="Feedback"
+            />
+            <SidebarLink
+              to="/admin/gallery-items"
+              icon={<FiImage />}
+              label="Gallery Items"
+            />
+            {sidebarOpen && (
+              <div onClick={toggleSidebar} >
+                <Link
+                  to="/admin/bookings"
+                  className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+                >
+                  <FiImage />
+                  <span>hfghfghfg fgh</span>
+                </Link>
+                <Link
+                  to="/admin/feedback"
+                  className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+                >
+                  <FiImage />
+                  <span>hfghfghfg fgh</span>
+                </Link>
+              </div>
+            )}
 
-        </Routes>
+          </nav>
+        </div>
+
+        {/* Overlay for Sidebar in Mobile */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black opacity-50 lg:hidden z-30"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+
+        {/* Content Area */}
+        <div className="flex-1 bg-[#f3f4f6] overflow-y-scroll">
+          <Routes>
+            <Route path="/bookings" element={<AdminBooking />} />
+            <Route path="/categories" element={<AdminCategories />} />
+            <Route path="/rooms" element={<AdminRooms />} />
+            <Route path="/users" element={<AdminUsers />} />
+            <Route path="/feedback" element={<AdminFeedback />} />
+            <Route path="/gallery-items" element={<AdminGalleryItems />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );
 }
+
+/* Sidebar Link Component */
+const SidebarLink = ({ to, icon, label }) => {
+  return (
+    <Link
+      to={to}
+      className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+    >
+      {icon}
+      <span>{label}</span>
+    </Link>
+  );
+};
