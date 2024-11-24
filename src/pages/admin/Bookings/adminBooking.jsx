@@ -10,15 +10,15 @@ export default function AdminBooking() {
 
   // Handlers for edit and delete actions
   const handleEdit = (id) => {
-    
+
   };
 
   const handleDelete = (id) => {
-    
+
   };
 
   const handleAddBooking = () => {
-    
+
   };
 
   return (
@@ -44,7 +44,7 @@ export default function AdminBooking() {
               <tr
                 key={booking.id}
                 className="hover:bg-gray-100 bg-white border-slate-300 border-b-2"
-                  
+
               >
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2">{booking.name}</td>
@@ -70,15 +70,6 @@ export default function AdminBooking() {
           </tbody>
         </table>
       </div>
-
-      {/* Add Booking Button */}
-      <button
-        onClick={handleAddBooking}
-        className="fixed bottom-8 right-8 bg-blue-600 text-white rounded-full shadow-lg p-4 hover:bg-blue-700"
-        title="Add Booking"
-      >
-        + Add Booking
-      </button>
     </div>
   );
 }
