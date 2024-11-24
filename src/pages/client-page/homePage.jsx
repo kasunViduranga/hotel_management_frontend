@@ -1,30 +1,26 @@
 import Header from "../../components/header/header";
+import Footer from "../../components/footer/footer"
+import Slider from "../../components/home/slider/slider";
+import BookingBox from "../../components/home/booking/booking";
+import About from "../../components/home/about/about";
+import OurRooms from "../../components/home/ourRooms/ourRooms";
+import OurServises from "../../components/home/ourService/ourService";
+import Testimonials from "../../components/home/testimonial/testimonial";
 
-export default function HomePage(){
-
-  return(
+const HomePage = () => {
+  
+  return (
     <>
-      <Header/>
-
-      <div className="w-full h-screen bg-blue-900 flex flex-col items-center">
-
-        <div className=" border border-white bg-white h-[100px] w-[700px] rounded-lg flex  justify-center items-center">
-
-        <input type="date"/>
-
-        <input type="date"/>
-
-        <select>
-            <option>Luxury</option>
-            <option>Normal</option>
-            <option>Low</option>
-        </select>
-        <button>Book Now</button>
-        </div>
-        <h1 className="text-white text-[50px]">
-          Welcome to the Leonine Villa
-        </h1>
-      </div>
+    <Header />
+    <Slider/>
+    <BookingBox/>
+    <About/>
+    <OurRooms/>
+    <OurServises/>
+    <Testimonials/>
+    <Footer/>
     </>
-  )
-}
+  );
+};
+
+export default HomePage;

@@ -5,6 +5,8 @@ import AdminPage from "./pages/adminpage/admin";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TestComponent from "./components/test/test";
 import LoginPage from "./pages/login/login";
+import 'animate.css';
+import React from 'react';
 
 function App() {
 
