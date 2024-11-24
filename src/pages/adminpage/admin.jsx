@@ -10,7 +10,7 @@ import { useState } from "react";
 
 import AdminBooking from "../admin/Bookings/adminBooking";
 import AdminCategories from "../admin/categories/adminCategories";
-import AdminRooms from "../admin/rooms/rooms";
+import AdminRooms from "../admin/rooms/adminRooms";
 import AdminUsers from "../admin/users/users";
 import AdminFeedback from "../admin/feedback/feedback";
 import AdminGalleryItems from "../admin/galleryItems/galleryItems";
@@ -83,54 +83,60 @@ export default function AdminPage() {
         >
           <div className="text-white text-2xl font-bold p-4"></div>
           <nav className="flex flex-col space-y-4 px-4">
-            <SidebarLink
+
+            <Link
               to="/admin/bookings"
-              icon={<CiBookmarkCheck />}
-              label="Bookings"
-            />
-            <SidebarLink
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <FiImage />
+              <span>Bookings</span>
+            </Link>
+
+            <Link
               to="/admin/categories"
-              icon={<MdOutlineCategory />}
-              label="Categories"
-            />
-            <SidebarLink
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <MdOutlineCategory />
+              <span>Categories</span>
+            </Link>
+
+            <Link
               to="/admin/rooms"
-              icon={<MdOutlineRoom />}
-              label="Rooms"
-            />
-            <SidebarLink
-              to="/admin/users"
-              icon={<FiUsers />}
-              label="Users"
-            />
-            <SidebarLink
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <MdOutlineRoom />
+              <span>Rooms</span>
+            </Link>
+
+            <Link
               to="/admin/feedback"
-              icon={<MdOutlineFeedback />}
-              label="Feedback"
-            />
-            <SidebarLink
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <MdOutlineFeedback />
+              <span>Feedback</span>
+            </Link>
+
+            <Link
               to="/admin/gallery-items"
-              icon={<FiImage />}
-              label="Gallery Items"
-            />
-            {sidebarOpen && (
-              <div onClick={toggleSidebar} >
-                <Link
-                  to="/admin/bookings"
-                  className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
-                >
-                  <FiImage />
-                  <span>hfghfghfg fgh</span>
-                </Link>
-                <Link
-                  to="/admin/feedback"
-                  className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
-                >
-                  <FiImage />
-                  <span>hfghfghfg fgh</span>
-                </Link>
-              </div>
-            )}
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <FiImage />
+              <span>Gallery Items</span>
+            </Link>
+
+            <Link
+              to="/admin/users"
+              onClick={toggleSidebar}
+              className="flex items-center gap-2 text-white text-lg hover:font-bold hover:bg-blue-500 px-4 py-2 rounded"
+            >
+              <FiUsers />
+              <span>Users</span>
+            </Link>
 
           </nav>
         </div>
