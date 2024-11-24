@@ -6,6 +6,7 @@ import About from "../../components/home/about/about";
 import OurRooms from "../../components/home/ourRooms/ourRooms";
 import OurServises from "../../components/home/ourService/ourService";
 import Testimonials from "../../components/home/testimonial/testimonial";
+import OurTeam from "../../components/home/ourTeam/ourTeam";
 
 const HomePage = () => {
   
@@ -18,6 +19,7 @@ const HomePage = () => {
     <OurRooms/>
     <OurServises/>
     <Testimonials/>
+    <OurTeam/>
     <Footer/>
     </>
   );

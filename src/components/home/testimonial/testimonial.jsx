@@ -1,59 +1,110 @@
-import React, { useState } from 'react';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaQuoteLeft } from "react-icons/fa";
+import Testimonial1 from "../../../assets/testimonial-1.jpg";
+import Testimonial2 from "../../../assets/testimonial-2.jpg";
+import Testimonial3 from "../../../assets/testimonial-3.jpg";
+import Testimonial4 from "../../../assets/testimonial-4.jpg";
+import BackgroundImage from "../../../assets/carousel-2.jpg";
 
-const testimonials = [
-  { id: 1, name: "John Doe", profession: "Developer", description: "Great place to stay!", img: "path/to/img1.jpg" },
-  { id: 2, name: "Jane Smith", profession: "Designer", description: "Loved the experience!", img: "path/to/img2.jpg" },
-  { id: 3, name: "Alice Brown", profession: "Manager", description: "Would visit again!", img: "path/to/img3.jpg" },
-  { id: 4, name: "Bob White", profession: "Engineer", description: "Perfect stay for families.", img: "path/to/img4.jpg" },
+const testimonial = [
+  {
+    description:
+      "LuxeStay exceeded my expectations! The rooms were spotless, and the staff was incredibly attentive. A truly unforgettable stay!",
+    img: Testimonial1,
+    name: "Ana Maria",
+    profession: "Travel Blogger",
+    icon: <FaQuoteLeft className="text-[#FEA116] text-3xl" />,
+  },
+  {
+    description:
+      "Amazing ambiance and fantastic service! LuxeStay is my go-to destination for relaxation and luxury.",
+    img: Testimonial2,
+    name: "Jane Smith",
+    profession: "Entrepreneur",
+    icon: <FaQuoteLeft className="text-[#FEA116] text-3xl" />,
+  },
+  {
+    description:
+      "From the food to the spa, everything was top-notch. I can't wait to visit LuxeStay again!",
+    img: Testimonial3,
+    name: "Robert Brown",
+    profession: "Photographer",
+    icon: <FaQuoteLeft className="text-[#FEA116] text-3xl" />,
+  },
+  {
+    description:
+      "The best hotel experience I've had! LuxeStay truly lives up to its name with impeccable service and facilities.",
+    img: Testimonial4,
+    name: "Emily White",
+    profession: "Designer",
+    icon: <FaQuoteLeft className="text-[#FEA116] text-3xl" />,
+  },
 ];
 
-export default function TestimonialSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    if (currentIndex < testimonials.length - 2) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+const Testimonials = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+    arrows: true,
   };
 
   return (
-    <div className="container-xxl my-5 py-5 bg-dark">
-      <div className="container">
-        <h2 className="text-center text-white mb-4">What Our Guests Say</h2>
-        <div className="testimonial-slider flex justify-between items-center">
-          {/* Left Arrow Button */}
-          <button onClick={prevSlide} className="text-white bg-primary p-2 rounded-full">
-            &#10094;
-          </button>
-
-          <div className="testimonial-cards flex overflow-hidden">
-            {/* Testimonial Cards */}
-            {testimonials.slice(currentIndex, currentIndex + 2).map((item) => (
-              <div key={item.id} className="testimonial-item text-white p-4 bg-white rounded-lg mx-2">
-                <div className="flex items-center">
-                  <img src={item.img} alt={item.name} className="w-12 h-12 rounded-full mr-4" />
-                  <div>
-                    <h6 className="font-bold">{item.name}</h6>
-                    <small>{item.profession}</small>
-                  </div>
+    <section
+      className="testimonial-section py-10"
+      style={{
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="container mx-auto px-4" style={{ padding: "0 25px" }}>
+        <Slider {...settings} className="testimonial-slider">
+          {testimonial.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-lg p-6 "
+            >
+              <div className="mb-4">{item.icon}</div>
+              <p className="text-gray-700 italic mb-6">{item.description}</p>
+              <div className="flex items-center">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-16 h-16 rounded-full border-2 border-[#FEA116] mr-4"
+                />
+                <div>
+                  <h5 className="text-lg font-bold text-gray-900">
+                    {item.name}
+                  </h5>
+                  <small className="text-gray-600">{item.profession}</small>
                 </div>
-                <p className="mt-3">{item.description}</p>
               </div>
-            ))}
-          </div>
-
-          {/* Right Arrow Button */}
-          <button onClick={nextSlide} className="text-white bg-primary p-2 rounded-full">
-            &#10095;
-          </button>
-        </div>
+            </div>
+          ))}
+        </Slider>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default Testimonials;
