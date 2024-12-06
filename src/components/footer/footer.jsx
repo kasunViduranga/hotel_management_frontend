@@ -81,8 +81,8 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-lg font-semibold">Company __________</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />About Us</a></li>
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Contact Us</a></li>
+              <li><a href="/about-us" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />About Us</a></li>
+              <li><a href="/contact-us" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Contact Us</a></li>
               <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Privacy Policy</a></li>
               <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Terms & Conditions</a></li>
               <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Support</a></li>
@@ -93,11 +93,11 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-lg font-semibold">Services __________</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Food & Restaurant</a></li>
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Spa & Fitness</a></li>
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Sports & Gaming</a></li>
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Event & Party</a></li>
-              <li><a href="#" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />GYM & Yoga</a></li>
+              <li><a href="/our-services" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Food & Restaurant</a></li>
+              <li><a href="/our-services" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Spa & Fitness</a></li>
+              <li><a href="/our-services" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Sports & Gaming</a></li>
+              <li><a href="/our-services" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />Event & Party</a></li>
+              <li><a href="/our-services" className="hover:text-[#FEA116] flex items-center gap-2"><FaAngleDoubleRight className="text-[#ffffff]" />GYM & Yoga</a></li>
             </ul>
           </div>
         </div>

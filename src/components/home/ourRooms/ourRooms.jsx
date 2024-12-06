@@ -11,7 +11,7 @@ const OurRooms = () => {
                 {/* Section Heading */}
                 < div className="text-center mb-10" >
                     <h6 className="text-[#FEA116] font-semibold uppercase" > ______ Our Rooms ______ </h6>
-                    <h1 className="text-4xl font-bold text-[#FEA116]" > Explre Our <span className="text-4xl font-bold text-[#000000] uppercase">Rooms</span> </h1>
+                    <h1 className="text-4xl font-bold text-[#FEA116]" > Explore Our <span className="text-4xl font-bold text-[#000000] uppercase">Rooms</span> </h1>
                 </div>
 
                 {/* Room Items */}

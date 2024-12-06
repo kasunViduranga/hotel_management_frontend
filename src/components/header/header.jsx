@@ -1,9 +1,43 @@
-import { useState } from "react";
-import {FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube} from "react-icons/fa";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const Header = () => {
+const Header = (props) => {
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Replace with actual authentication logic
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const [name, setName] = useState("");
+  const [userimage, setUserImage] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      axios
+        .get(import.meta.env.VITE_BACKEND_URL + "/api/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setName(res.data.user.firstName);
+          setUserImage("https://via.placeholder.com/40");
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          setName("");
+          setIsLoggedIn(false);
+        });
+    } else {
+      setName("");
+      setIsLoggedIn(false);
+    }
+  }, []);
+ 
   return (
     <header
       className="bg-[#0F172B] text-white shadow-md"
@@ -12,80 +46,83 @@ const Header = () => {
       <div className="container flex items-center justify-between px-4 py-4 mx-auto">
         {/* Logo */}
         <div className="text-3xl font-bold uppercase" style={{ color: "#FEA116" }}>
-        Luxe<span>Stay</span>
+          Luxe<span>Stay</span>
         </div>
 
         {/* Navigation (Desktop) */}
         <nav className="hidden space-x-6 md:flex">
           <a
-            href="#"
+            href="/"
             className="hover:text-[#FEA116] transition uppercase font-medium"
           >
             Home
           </a>
           <a
-            href="#"
+            href="/about-us"
             className="hover:text-[#FEA116] transition uppercase font-medium"
           >
             About
           </a>
           <a
-            href="#"
+            href="/our-services"
             className="hover:text-[#FEA116] transition uppercase font-medium"
           >
             Services
           </a>
           <a
-            href="#"
+            href="/our-rooms"
             className="hover:text-[#FEA116] transition uppercase font-medium"
           >
             Rooms
           </a>
           <a
-            href="#"
+            href="/contact-us"
             className="hover:text-[#FEA116] transition uppercase font-medium"
           >
             Contact
           </a>
         </nav>
 
-        {/* Social Media Icons */}
-        <div className="hidden space-x-4 md:flex">
-          <a
-            href="#"
-            className="text-[#FEA116] hover:text-[#fea116d3] transition"
-            aria-label="Facebook"
-          >
-            <FaFacebookF />
-          </a>
-          <a
-            href="#"
-            className="text-[#FEA116] hover:text-[#fea116d3] transition"
-            aria-label="Twitter"
-          >
-            <FaTwitter />
-          </a>
-          <a
-            href="#"
-            className="text-[#FEA116] hover:text-[#fea116d3] transition"
-            aria-label="Instagram"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="#"
-            className="text-[#FEA116] hover:text-[#fea116d3] transition"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="#"
-            className="text-[#FEA116] hover:text-[#fea116d3] transition"
-            aria-label="YouTube"
-          >
-            <FaYoutube />
-          </a>
+        {/* User Authentication Section */}
+        <div className="hidden md:flex relative">
+          {isLoggedIn ? (
+            <div className="flex items-center cursor-pointer"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              <img
+                src={userimage}
+                alt="User"
+                className="w-10 h-10 rounded-full border-2 border-[#FEA116]"
+              />
+              <span className="ml-3 font-medium">{name}</span>
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-[175px] bg-white text-black rounded-lg shadow-lg w-48 z-50">
+                  <a
+                    href="#profile"
+                    className="block px-4 py-2 hover:rounded-lg m-2 justify-center text-center rounded-lg hover:bg-[#ee9c22] bg-[#fca728] font-bold hover:text-white"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="#logout"
+                    className="block px-4 py-2 hover:rounded-lg m-2 justify-center text-center rounded-lg hover:bg-[#ee9c22] bg-[#fca728] font-bold hover:text-white"
+                    onClick={() => {
+                      setIsLoggedIn(false); // Handle logout logic
+                    }}
+                  >
+                    Logout
+                  </a>
+                </div>
+              )}
+            </div>
+          ) : (
+            <a
+              href="/login"
+              className="bg-[#ffa318] text-[#000000] py-2 px-6 rounded-full font-medium hover:bg-[#fe9216] hover:text-[#ffffff] transition"
+            >
+              Login
+            </a>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -134,42 +171,35 @@ const Header = () => {
               Contact
             </a>
           </nav>
-          <div className="flex justify-center py-4 space-x-4">
-            <a
-              href="#"
-              className="text-[#FEA116] hover:text-[#fea116d3]"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="#"
-              className="text-[#FEA116] hover:text-[#fea116d3]"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="#"
-              className="text-[#FEA116] hover:text-[#fea116d3]"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="#"
-              className="text-[#FEA116] hover:text-[#fea116d3]"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedinIn />
-            </a>
-            <a
-              href="#"
-              className="text-[#FEA116] hover:text-[#fea116d3]"
-              aria-label="YouTube"
-            >
-              <FaYoutube />
-            </a>
+          <div className="flex justify-center py-4">
+            {isLoggedIn ? (
+              <a
+                href="#profile"
+                className="mr-10 bg-[#ffa318] text-[#000000] py-2 px-6 rounded-full font-medium hover:bg-[#fe9216] hover:text-[#ffffff] transition"
+              >
+                Logout
+              </a>
+
+            ) : (
+              <a
+                href="/login"
+                className="bg-[#ffa318] text-[#000000] py-2 px-6 rounded-full font-medium hover:bg-[#fe9216] hover:text-[#ffffff] transition"
+              >
+                Login
+              </a>
+            )}
+
+            {isLoggedIn ? (
+              <a
+                href="#profile"
+                className="bg-[#ffa318] text-[#000000] py-2 px-6 rounded-full font-medium hover:bg-[#fe9216] hover:text-[#ffffff] transition"
+              >
+                Profile
+              </a>
+
+            ) : (
+              <a > </a>
+            )}
           </div>
         </div>
       )}

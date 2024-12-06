@@ -29,7 +29,7 @@ const Slider = () => {
   };
 
   return (
-<section className="relative h-screen">
+<section className="relative h-screen z-[-1]">
     <div className="relative w-full h-screen bg-[f1f8ff]]">
       {/* Full-screen Image Slider */}
       <div
